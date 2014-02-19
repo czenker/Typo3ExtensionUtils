@@ -45,7 +45,7 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $url = 'http://typo3.org/fileadmin/ter/extensions.xml.gz';
-        $extensionsXmlFile = '/tmp/t3xutils.extensions.temp.xml';
+        $extensionsXmlFile = sys_get_temp_dir() . '/t3xutils.extensions.temp.xml';
         $extensionsXmlFileGzipped = $extensionsXmlFile . '.gz';
 
         $this->logger->info('fetch extension info from "' . $url .'"');

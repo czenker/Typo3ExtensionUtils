@@ -10,7 +10,7 @@ class ExtensionsXml {
     /**
      * @var string
      */
-    protected $extensionsXmlFile = '/tmp/t3xutils.extensions.temp.xml';
+    protected $extensionsXmlFile;
 
     /**
      * @param string|null $extensionXmlFile
@@ -18,6 +18,9 @@ class ExtensionsXml {
     public function __construct($extensionXmlFile = NULL) {
         if(!is_null($extensionXmlFile)) {
             $this->extensionsXmlFile = $extensionXmlFile;
+        }
+        else {
+            $this->extensionsXmlFile = sys_get_temp_dir() . '/t3xutils.extensions.temp.xml';
         }
     }
 
