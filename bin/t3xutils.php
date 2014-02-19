@@ -51,10 +51,8 @@ $console->addCommands(array(
 	new Command\Ter\SearchExtensionKeyCommand(),
 ));
 
-// remove the option --version. We need this for extension handling
-$options = $console->getDefinition()->getOptions();
-unset($options['version']);
 //@todo: make code pay respect to the option an re-enable it
+$options = $console->getDefinition()->getOptions();
 unset($options['no-interaction']);
 $console->getDefinition()->setOptions($options);
 
