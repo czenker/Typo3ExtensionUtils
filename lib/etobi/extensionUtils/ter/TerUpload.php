@@ -261,7 +261,7 @@ class TerUpload {
 	 * @return TerUpload
 	 */
 	public function setPath($path) {
-		$this->path = rtrim($path, '/ ') . '/';
+		$this->path = rtrim($path, '/ ') . DIRECTORY_SEPARATOR;
 		return $this;
 	}
 

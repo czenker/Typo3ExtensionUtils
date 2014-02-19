@@ -66,7 +66,7 @@ class Helper {
 		if (is_array($dirs) && $recursivityLevels > 0) {
 			foreach ($dirs as $subdirs) {
 				if ((string)$subdirs != '' && (!strlen($excludePattern) || !preg_match('/^' . $excludePattern . '$/', $subdirs))) {
-					$fileArr = self::getAllFilesAndFoldersInPath($fileArr, $path . $subdirs . '/', $extList, $regDirs, $recursivityLevels - 1, $excludePattern);
+					$fileArr = self::getAllFilesAndFoldersInPath($fileArr, $path . $subdirs . DIRECTORY_SEPARATOR, $extList, $regDirs, $recursivityLevels - 1, $excludePattern);
 				}
 			}
 		}
@@ -97,13 +97,13 @@ class Helper {
 			$d = dir($path);
 			if (is_object($d)) {
 				while ($entry = $d->read()) {
-					if (@is_file($path . '/' . $entry)) {
+					if (@is_file($path . DIRECTORY_SEPARATOR . $entry)) {
 						$fI = pathinfo($entry);
-						$key = md5($path . '/' . $entry); // Don't change this ever - extensions may depend on the fact that the hash is an md5 of the path! (import/export extension)
+						$key = md5($path . DIRECTORY_SEPARATOR . $entry); // Don't change this ever - extensions may depend on the fact that the hash is an md5 of the path! (import/export extension)
 						if ((!strlen($extensionList) || self::inList($extensionList, strtolower($fI['extension']))) && (!strlen($excludePattern) || !preg_match('/^' . $excludePattern . '$/', $entry))) {
-							$filearray[$key] = ($prependPath ? $path . '/' : '') . $entry;
+							$filearray[$key] = ($prependPath ? $path . DIRECTORY_SEPARATOR : '') . $entry;
 							if ($order == 'mtime') {
-								$sortarray[$key] = filemtime($path . '/' . $entry);
+								$sortarray[$key] = filemtime($path . DIRECTORY_SEPARATOR . $entry);
 							} elseif ($order) {
 								$sortarray[$key] = $entry;
 							}
@@ -144,7 +144,7 @@ class Helper {
 				$dir = scandir($path);
 				$dirs = array();
 				foreach ($dir as $entry) {
-					if (is_dir($path . '/' . $entry) && $entry != '..' && $entry != '.') {
+					if (is_dir($path . DIRECTORY_SEPARATOR . $entry) && $entry != '..' && $entry != '.') {
 						$dirs[] = $entry;
 					}
 				}
@@ -163,7 +163,7 @@ class Helper {
 	 * @throws \Exception
 	 */
 	public static function getExtensionFilesData($path, $excludeForPackaging = '(CVS|\..*|.*~|.*\.bak)', $maxUploadSize = 31457280) {
-		$path = rtrim($path, '/') . '/';
+		$path = rtrim($path, '/') . DIRECTORY_SEPARATOR;
 
 		if (!is_dir($path) || !is_readable($path)) {
 			throw new \Exception('Cant read "' . $path .'"');

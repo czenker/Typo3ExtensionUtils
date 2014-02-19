@@ -19,7 +19,7 @@ class T3xFile {
      * @return bool
      */
     public function create($extensionKey, $sourcePath, $t3xFilePath) {
-        $sourcePath = rtrim($sourcePath, '/') . '/';
+        $sourcePath = rtrim($sourcePath, '/') . DIRECTORY_SEPARATOR;
 
         if (!is_dir($sourcePath)) {
             throw new \InvalidArgumentException(sprintf('Can\'t read "%s"', $sourcePath));
@@ -64,7 +64,7 @@ class T3xFile {
      * @return bool
      */
     public function extract($t3xFilePath, $destinationPath) {
-        $destinationPath = rtrim($destinationPath, '/') . '/';
+        $destinationPath = rtrim($destinationPath, '/') . DIRECTORY_SEPARATOR;
 
         if (!is_dir($destinationPath)) {
             mkdir($destinationPath, 0777, TRUE);
