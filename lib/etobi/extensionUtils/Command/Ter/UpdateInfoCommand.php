@@ -67,7 +67,7 @@ EOT
         }
 
         $fs = new \Symfony\Component\Filesystem\Filesystem();
-        $fs->chmod($extensionsXmlFileGzipped, '0666');
-        $fs->chmod($extensionsXmlFile, '0666');
+        $fs->chmod($extensionsXmlFileGzipped, 0666);
+        $fs->chmod($extensionsXmlFile, 0666);
     }
 }
