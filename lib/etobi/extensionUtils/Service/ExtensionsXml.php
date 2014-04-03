@@ -160,6 +160,6 @@ class ExtensionsXml {
     }
 
     public static function getDefaultFilename() {
-        return sys_get_temp_dir() . DIRECTORY_SEPARATOR .  $prefix . 't3xutils.extensions.temp.xml';
+        return sys_get_temp_dir() . DIRECTORY_SEPARATOR . 't3xutils.extensions.temp.xml';
     }
 }
