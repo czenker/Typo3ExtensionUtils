@@ -20,7 +20,7 @@ class ExtensionsXml {
             $this->extensionsXmlFile = $extensionXmlFile;
         }
         else {
-            $this->extensionsXmlFile = sys_get_temp_dir() . '/t3xutils.extensions.temp.xml';
+            $this->extensionsXmlFile = self::getDefaultFilename();
         }
     }
 
@@ -157,5 +157,9 @@ class ExtensionsXml {
             }
             return $dependencies;
         }
+    }
+
+    public static function getDefaultFilename() {
+        return sys_get_temp_dir() . '/t3xutils.extensions.temp.xml';
     }
 }

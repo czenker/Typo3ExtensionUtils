@@ -5,6 +5,8 @@ namespace etobi\extensionUtils\Command\Ter;
 use etobi\extensionUtils\Command\AbstractCommand;
 use etobi\extensionUtils\Controller\TerController;
 
+use etobi\extensionUtils\Service\ExtensionsXml;
+
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Input\InputInterface;
@@ -45,7 +47,7 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $url = 'http://typo3.org/fileadmin/ter/extensions.xml.gz';
-        $extensionsXmlFile = sys_get_temp_dir() . '/t3xutils.extensions.temp.xml';
+        $extensionsXmlFile = ExtensionsXml::getDefaultFilename();
         $extensionsXmlFileGzipped = $extensionsXmlFile . '.gz';
 
         $this->logger->info('fetch extension info from "' . $url .'"');
