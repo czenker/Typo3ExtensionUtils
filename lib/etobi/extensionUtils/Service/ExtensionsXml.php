@@ -160,11 +160,6 @@ class ExtensionsXml {
     }
 
     public static function getDefaultFilename() {
-        $prefix = '';
-        if (function_exists('posix_getpwuid')) {
-            $user = posix_getpwuid(posix_geteuid());
-            $prefix = $user['name'] . '.';
-        }
         return sys_get_temp_dir() . DIRECTORY_SEPARATOR .  $prefix . 't3xutils.extensions.temp.xml';
     }
 }

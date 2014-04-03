@@ -65,5 +65,9 @@ EOT
         } else {
             $this->logger->critical('extension info was not updated');
         }
+
+        $fs = new \Symfony\Component\Filesystem\Filesystem();
+        $fs->chmod($extensionsXmlFileGzipped, '0666');
+        $fs->chmod($extensionsXmlFile, '0666');
     }
 }
