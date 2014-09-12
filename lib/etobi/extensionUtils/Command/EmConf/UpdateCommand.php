@@ -32,7 +32,7 @@ class UpdateCommand extends AbstractCommand
                 new InputOption('author', NULL, InputOption::VALUE_REQUIRED, 'author string to set'),
                 new InputOption('email', NULL, InputOption::VALUE_REQUIRED, 'email string to set'),
                 new InputOption('company', NULL, InputOption::VALUE_REQUIRED, 'company string to set'),
-                new InputOption('version', NULL, InputOption::VALUE_REQUIRED, 'version string to set'),
+                new InputOption('extension-version', NULL, InputOption::VALUE_REQUIRED, 'version string to set'),
                 new InputOption('state', NULL, InputOption::VALUE_REQUIRED, 'state string to set'),
             ))
             ->setDescription('Update an ext_emconf.php file')
@@ -43,7 +43,7 @@ Update an ext_emconf.php file
 Example
 =======
 
-  t3xutils emconf:update --version="1.2.3" --state="stable" my_extension/ext_emconf.php
+  t3xutils emconf:update --extension-version="1.2.3" --state="stable" my_extension/ext_emconf.php
 EOT
 )
         ;
@@ -99,9 +99,9 @@ EOT
             $emconf->setAuthorCompany($input->getOption('company'));
             $this->logger->info(sprintf('company set to "%s"', $input->getOption('company')));
         }
-        if($input->getOption('version')) {
-            $emconf->setVersion($input->getOption('version'));
-            $this->logger->info(sprintf('version set to "%s"', $input->getOption('version')));
+        if($input->getOption('extension-version')) {
+            $emconf->setVersion($input->getOption('extension-version'));
+            $this->logger->info(sprintf('version set to "%s"', $input->getOption('extension-version')));
         }
         if($input->getOption('state')) {
             $emconf->setState($input->getOption('state'));

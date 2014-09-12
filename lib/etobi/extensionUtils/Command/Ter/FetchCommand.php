@@ -32,7 +32,7 @@ class FetchCommand extends AbstractCommand
             ->setDefinition(array(
                 new InputArgument('extensionKey', InputArgument::REQUIRED, 'the extension you want to fetch'),
                 new InputArgument('destinationPath', InputArgument::OPTIONAL, 'the path to write the extension to'),
-		        new InputOption('version', NULL, InputOption::VALUE_REQUIRED, 'the version you want to fetch'),
+		        new InputOption('extension-version', NULL, InputOption::VALUE_REQUIRED, 'the version you want to fetch'),
                 new InputOption('force', 'f', InputOption::VALUE_NONE, 'force override if the file already exists'),
                 new InputOption('extract', 'x', InputOption::VALUE_NONE, 'extract the downloaded file'),
             ))
@@ -49,7 +49,7 @@ Download the latest version of "my_extension" and store the t3x as my_extension_
 
 Download extension "my_extension" in version 1.2.3, extract and store in "my_path/"
 
-  t3xutils ter:fetch -x --version="1.2.3" my_extension my_path
+  t3xutils ter:fetch -x --extension-version="1.2.3" my_extension my_path
 EOT
 )
         ;
@@ -61,7 +61,7 @@ EOT
     protected function execute(InputInterface $input, OutputInterface $output)
     {
         $extensionKey = $input->getArgument('extensionKey');
-        $version = $input->getOption('version');
+        $version = $input->getOption('extension-version');
         $destinationPath = $input->getArgument('destinationPath');
 
 	    $extensionsXmlService = new ExtensionsXml();
